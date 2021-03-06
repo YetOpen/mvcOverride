@@ -51,6 +51,8 @@ class PlgSystemMVCOverride extends JPlugin
 	{
 		JPlugin::loadLanguage('plg_system_mvcoverride');
 
+var_dump("caricato");
+
 		parent::__construct($subject, $config);
 
 		if (JPluginHelper::isEnabled('system', 'redcore'))
@@ -326,7 +328,14 @@ class PlgSystemMVCOverride extends JPlugin
 		}
 		else
 		{
-			$realPath = JPATH_BASE . '/components/' . substr($filePath, strlen($includePath));
+			$adminInPath = "";
+			// YetOpen - adds - if I'm doing stuff in the frontend but the original files to be override are in the backend
+            // I have to add "/administrator" to the path file
+			if (strpos($includePath,"administrator") !== FALSE && strpos(JPATH_BASE,"administrator") === FALSE)
+			{
+				$adminInPath= "/administrator";
+			}
+			$realPath = JPATH_BASE . $adminInPath . '/components/' . substr($filePath, strlen($includePath));
 		}
 
 		$realPath = JPath::clean($realPath);
