@@ -51,8 +51,6 @@ class PlgSystemMVCOverride extends JPlugin
 	{
 		JPlugin::loadLanguage('plg_system_mvcoverride');
 
-var_dump("caricato");
-
 		parent::__construct($subject, $config);
 
 		if (JPluginHelper::isEnabled('system', 'redcore'))
